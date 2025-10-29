@@ -1,1 +1,75 @@
+# Atividade: Cadastro de Alunos e Notas
+# Objetivo: praticar o uso de tuplas, listas e dicionários em Python
+
+# -------------------------------
+# Tupla com nomes das disciplinas
+# -------------------------------
+# As tuplas são imutáveis — ou seja, depois de criadas, não podem ser alteradas.
+disciplinas = ('Algoritmos', 'Banco de Dados', 'Python')
+
+# ------------------------------------------
+# Dicionário para armazenar os alunos e notas
+# ------------------------------------------
+# Cada chave (key) será o nome do aluno, e o valor (value) será uma lista com suas notas.
+alunos = {}
+
+# ----------------------------------------------------------
+# Solicita ao usuário o número de alunos que serão cadastrados
+# ----------------------------------------------------------
+n = int(input("Digite o número de alunos: "))
+
+# ---------------------------------------------------
+# Estrutura de repetição 'for' para cadastrar os alunos
+# ---------------------------------------------------
+for i in range(n):
+    # Mostra o número do aluno que está sendo cadastrado
+    print(f"\nAluno {i+1}:")
+    
+    # Lê o nome do aluno e armazena na variável 'nome'
+    nome = input("Nome: ")
+    
+    # Cria uma lista vazia para guardar as notas
+    notas = []
+    
+    # Outro laço 'for' para pedir as notas de cada matéria
+    for d in disciplinas:  # 'd' assume cada valor da tupla disciplinas
+        # Lê a nota (tipo float) e armazena na variável 'nota'
+        nota = float(input(f"Nota em {d}: "))
+        # Adiciona (append) a nota à lista de notas
+        notas.append(nota)
+    
+    # Adiciona o aluno e sua lista de notas ao dicionário 'alunos'
+    alunos[nome] = notas  # Exemplo: {'Maria': [8,7,9], 'João': [6,5,7]}
+
+# ------------------------------
+# Exibe os resultados finais
+# ------------------------------
+print("\n=== Resultados ===")
+
+# Variáveis auxiliares para armazenar a maior média e o nome do melhor aluno
+maior_media = 0
+melhor_aluno = ""
+
+# ---------------------------------------------------------------
+# Percorre o dicionário com o método .items(), que retorna pares
+# (chave, valor), ou seja, (nome do aluno, lista de notas)
+# ---------------------------------------------------------------
+for nome, notas in alunos.items():
+    # Calcula a média do aluno (soma das notas / quantidade)
+    media = sum(notas) / len(notas)
+    
+    # Mostra as notas e a média formatada com 1 casa decimal
+    print(f"{nome} -> Notas: {notas} | Média: {media:.1f}")
+    
+    # Verifica se essa é a maior média até o momento
+    if media > maior_media:
+        # Atualiza a maior média
+        maior_media = media
+        # Guarda o nome do aluno
+        melhor_aluno = nome
+
+# -------------------------------------------------------
+# Exibe o nome do aluno com a maior média e o seu valor
+# -------------------------------------------------------
+print(f"\nAluno com a maior média: {melhor_aluno} ({maior_media:.1f})")
 
